@@ -13,8 +13,9 @@ sudo a2enmod php${PHP_VERSION}
 sudo a2enmod rewrite
 sudo systemctl restart apache2
 
-sudo chown -R $MY_USER:www-data $WEB_ROOT
-sudo chmod -R 775 $WEB_ROOT
+
+sudo chown -R $MY_USER:www-data $BASE_PATH
+sudo chmod -R 775 $BASE_PATH
 
 # Create directories step by step
 cd $WEB_ROOT
