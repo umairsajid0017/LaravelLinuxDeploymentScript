@@ -16,6 +16,11 @@ sudo apt install -y php${PHP_VERSION} libapache2-mod-php${PHP_VERSION}
 sudo apt install php${PHP_VERSION}-curl
 sudo apt install php${PHP_VERSION}-xml
 sudo apt install php${PHP_VERSION}-mysqli
+sudo apt install php${PHP_VERSION}-intl
+sudo apt install php${PHP_VERSION}-mbstring
+sudo apt install php${PHP_VERSION}-iconv
+
+
 
 sudo a2enmod php${PHP_VERSION}
 sudo a2enmod rewrite
