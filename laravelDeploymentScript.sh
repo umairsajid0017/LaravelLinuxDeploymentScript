@@ -1,7 +1,8 @@
 #!/bin/bash
 
 PROJECT_DIR="ABC_Project"
-WEB_ROOT="/var/www/html/$PROJECT_DIR"
+BASE_PATH="/var/www/html"
+WEB_ROOT=$BASE_PATH"/$PROJECT_DIR"
 PHP_VERSION="8.1"
 MY_USER="alpha_alex"
 
