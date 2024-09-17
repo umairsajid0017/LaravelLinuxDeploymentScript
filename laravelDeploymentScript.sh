@@ -6,6 +6,7 @@ WEB_ROOT=$BASE_PATH"/$PROJECT_DIR"
 PHP_VERSION="8.1"
 MY_USER=$(whoami)
 
+# sudo docker exec -i mysql8 mysql -uroot -p1234 db < "db.sql"
 # sudo docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql8
 #sudo usermod -aG www-data $(whoami)
 #su - $(whoami)
