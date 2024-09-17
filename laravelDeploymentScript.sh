@@ -35,8 +35,10 @@ cd storage/framework
 mkdir -p sessions
 mkdir -p cache
 mkdir -p views
+mkdir -p logs
 cd cache
 mkdir -p data
+
 
 
 cd $WEB_ROOT
