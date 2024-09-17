@@ -6,7 +6,10 @@ WEB_ROOT=$BASE_PATH"/$PROJECT_DIR"
 PHP_VERSION="8.1"
 MY_USER=$(whoami)
 
-sudo usermod -aG www-data $(whoami)
+# sudo docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql8
+#sudo usermod -aG www-data $(whoami)
+#su - $(whoami)
+
 sudo apt update
 sudo apt install -y php${PHP_VERSION} libapache2-mod-php${PHP_VERSION}
 sudo apt install php${PHP_VERSION}-curl
