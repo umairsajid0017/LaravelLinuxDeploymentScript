@@ -4,10 +4,14 @@ PROJECT_DIR="ABC_Project"
 BASE_PATH="/var/www/html"
 WEB_ROOT=$BASE_PATH"/$PROJECT_DIR"
 PHP_VERSION="8.1"
-MY_USER="alpha_alex"
+MY_USER=$(whoami)
 
+sudo usermod -aG www-data $(whoami)
 sudo apt update
 sudo apt install -y php${PHP_VERSION} libapache2-mod-php${PHP_VERSION}
+sudo apt install php${PHP_VERSION}-curl
+sudo apt install php${PHP_VERSION}-xml
+sudo apt install php${PHP_VERSION}-mysqli
 
 sudo a2enmod php${PHP_VERSION}
 sudo a2enmod rewrite
@@ -32,7 +36,11 @@ mkdir -p data
 
 
 cd $WEB_ROOT
+rm -rf vendor
+rm composer.lock
+sudo apt install composer
 composer install
+composer dump-autoload
 
 sudo chown -R www-data:www-data $WEB_ROOT
 
