@@ -61,11 +61,11 @@ sudo chmod -R 775 $WEB_ROOT/storage $WEB_ROOT/bootstrap/cache
 
 sudo chmod 664 $WEB_ROOT/.env
 
-sudo -u www-data php${PHP_VERSION} artisan key:generate
-sudo -u www-data php${PHP_VERSION}  artisan config:cache
-sudo -u www-data php${PHP_VERSION}  artisan cache:clear
-sudo -u www-data php${PHP_VERSION}  artisan config:clear
-sudo -u www-data php${PHP_VERSION}  artisan route:clear
-sudo -u www-data php${PHP_VERSION}  artisan view:clear
-sudo -u www-data php${PHP_VERSION}  artisan optimize:clear
-sudo -u www-data php${PHP_VERSION}  artisan config:cache
+sudo -u $MY_USER php${PHP_VERSION} artisan key:generate
+sudo -u $MY_USER php${PHP_VERSION}  artisan config:cache
+sudo -u $MY_USER php${PHP_VERSION}  artisan cache:clear
+sudo -u $MY_USER php${PHP_VERSION}  artisan config:clear
+sudo -u $MY_USER php${PHP_VERSION}  artisan route:clear
+sudo -u $MY_USER php${PHP_VERSION}  artisan view:clear
+sudo -u $MY_USER php${PHP_VERSION}  artisan optimize:clear
+sudo -u $MY_USER php${PHP_VERSION}  artisan config:cache
