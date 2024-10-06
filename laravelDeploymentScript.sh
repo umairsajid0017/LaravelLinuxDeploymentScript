@@ -43,7 +43,7 @@ mkdir -p views
 mkdir -p logs
 cd cache
 mkdir -p data
-
+ln -s public/assets assets
 
 
 cd $WEB_ROOT
