@@ -1,11 +1,14 @@
 #!/bin/bash
 
 PROJECT_DIR="ABC_Project"
-BASE_PATH="/var/www/html"
-WEB_ROOT=$BASE_PATH"/$PROJECT_DIR"
 PHP_VERSION="8.1"
-MY_USER=$(whoami)
 GROUP="www-data"
+#GROUP="bitnami"
+
+
+BASE_PATH="$(pwd)"
+WEB_ROOT=$BASE_PATH"/$PROJECT_DIR"
+MY_USER=$(whoami)
 # sudo docker exec -i mysql8 mysql -uroot -p1234 db < "db.sql"
 # sudo docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql8
 #sudo usermod -aG $GROUP $(whoami)
@@ -25,6 +28,9 @@ sudo apt install php${PHP_VERSION}-iconv
 sudo a2enmod php${PHP_VERSION}
 sudo a2enmod rewrite
 sudo systemctl restart apache2
+#sudo /opt/bitnami/ctlscript.sh restart
+#sudo systemctl restart httpd
+#sudo systemctl restart ngnix
 
 
 sudo chown -R $MY_USER:$GROUP $BASE_PATH
@@ -57,7 +63,7 @@ sudo chown -R $MY_USER:$GROUP $WEB_ROOT
 
 sudo chown -R $MY_USER:$GROUP $WEB_ROOT/storage $WEB_ROOT/bootstrap/cache $WEB_ROOT/.env
 
-sudo chmod -R 777 $WEB_ROOT/storage $WEB_ROOT/bootstrap/cache
+sudo chmod -R 775 $WEB_ROOT/storage $WEB_ROOT/bootstrap/cache
 
 sudo chmod 664 $WEB_ROOT/.env
 
