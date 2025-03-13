@@ -45,7 +45,6 @@ cd cache
 mkdir -p data
 ln -s public/assets assets
 
-
 cd $WEB_ROOT
 rm -rf vendor
 rm composer.lock
@@ -57,7 +56,7 @@ sudo chown -R $MY_USER:$GROUP $WEB_ROOT
 
 sudo chown -R $MY_USER:$GROUP $WEB_ROOT/storage $WEB_ROOT/bootstrap/cache $WEB_ROOT/.env
 
-sudo chmod -R 775 $WEB_ROOT/storage $WEB_ROOT/bootstrap/cache
+sudo chmod -R 777 $WEB_ROOT/storage $WEB_ROOT/bootstrap/cache
 
 sudo chmod 664 $WEB_ROOT/.env
 
@@ -69,6 +68,4 @@ sudo -u $MY_USER php${PHP_VERSION}  artisan route:clear
 sudo -u $MY_USER php${PHP_VERSION}  artisan view:clear
 sudo -u $MY_USER php${PHP_VERSION}  artisan optimize:clear
 sudo -u $MY_USER php${PHP_VERSION}  artisan config:cache
-
-sudo chmod -R 775 $WEB_ROOT/storage $WEB_ROOT/bootstrap/cache
 
