@@ -69,3 +69,6 @@ sudo -u $MY_USER php${PHP_VERSION}  artisan route:clear
 sudo -u $MY_USER php${PHP_VERSION}  artisan view:clear
 sudo -u $MY_USER php${PHP_VERSION}  artisan optimize:clear
 sudo -u $MY_USER php${PHP_VERSION}  artisan config:cache
+
+sudo chmod -R 775 $WEB_ROOT/storage $WEB_ROOT/bootstrap/cache
+
