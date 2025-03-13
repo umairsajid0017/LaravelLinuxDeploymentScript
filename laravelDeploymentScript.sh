@@ -3,7 +3,7 @@
 PROJECT_DIR="ABC_Project"
 PHP_VERSION="8.1"
 GROUP="www-data"
-#GROUP="bitnami"
+#GROUP="daemon"
 
 
 BASE_PATH="$(pwd)"
