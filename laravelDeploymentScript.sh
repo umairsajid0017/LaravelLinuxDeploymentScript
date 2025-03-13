@@ -32,7 +32,8 @@ sudo chmod -R 775 $BASE_PATH
 
 # Create directories step by step
 cd $WEB_ROOT
-cp .env.example .env
+[ ! -e .env ] && cp .env.example .env
+
 cd bootstrap
 mkdir -p cache
 cd $WEB_ROOT
