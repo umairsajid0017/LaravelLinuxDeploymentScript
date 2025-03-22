@@ -2,8 +2,8 @@
 
 PROJECT_DIR="ABC_Project"
 PHP_VERSION="8.1"
-GROUP="www-data"
-#GROUP="daemon"
+#GROUP="www-data"
+GROUP="daemon"
 
 
 BASE_PATH="$(pwd)"
@@ -27,8 +27,8 @@ sudo apt install php${PHP_VERSION}-iconv
 
 sudo a2enmod php${PHP_VERSION}
 sudo a2enmod rewrite
-sudo systemctl restart apache2
-#sudo /opt/bitnami/ctlscript.sh restart
+#sudo systemctl restart apache2
+sudo /opt/bitnami/ctlscript.sh restart
 #sudo systemctl restart httpd
 #sudo systemctl restart ngnix
 
