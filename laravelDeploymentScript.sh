@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PROJECT_DIR="ABC_Project"
-PHP_VERSION="8.1"
+PHP_VERSION=""
 #GROUP="www-data"
 GROUP="daemon"
 
@@ -75,4 +75,7 @@ sudo -u $MY_USER php${PHP_VERSION}  artisan route:clear
 sudo -u $MY_USER php${PHP_VERSION}  artisan view:clear
 sudo -u $MY_USER php${PHP_VERSION}  artisan optimize:clear
 sudo -u $MY_USER php${PHP_VERSION}  artisan config:cache
+
+git config --global core.autocrlf input 
+git config core.fileMode false
 
