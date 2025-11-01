@@ -40,6 +40,17 @@ sudo chmod -R 775 $BASE_PATH
 cd $WEB_ROOT
 [ ! -e .env ] && cp .env.example .env
 
+# Add or update DATABASE_URL in .env file
+if [[ -f ".env" ]]; then
+    # Remove existing DATABASE_URL line if it exists
+    sed -i '/^DATABASE_URL=/d' .env
+    
+    # Append DATABASE_URL at the end of .env file
+    echo 'DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"' >> .env
+    echo "✓ DATABASE_URL added to .env file"
+fi
+
+
 cd bootstrap
 mkdir -p cache
 cd $WEB_ROOT
