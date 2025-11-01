@@ -35,9 +35,50 @@ sudo /opt/bitnami/ctlscript.sh restart
 
 sudo chown -R $MY_USER:$GROUP $BASE_PATH
 sudo chmod -R 775 $BASE_PATH
+# Create .htaccess file in root directory to redirect to PROJECT_DIR/public
+echo "Creating .htaccess file in root directory..."
+cat > $BASE_PATH/.htaccess << EOF
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Redirect all requests to the ${PROJECT_DIR}/public directory
+    RewriteCond %{REQUEST_URI} !^/${PROJECT_DIR}/public/
+    RewriteRule ^(.*)$ ${PROJECT_DIR}/public/\$1 [L]
+</IfModule>
 
+# Disable directory listing
+Options -Indexes
+EOF
+sudo chown $MY_USER:$GROUP $BASE_PATH/.htaccess
+sudo chmod 644 $BASE_PATH/.htaccess
+echo "✓ .htaccess file created in root directory"
 # Create directories step by step
 cd $WEB_ROOT
+
+# Create .htaccess file inside project directory to redirect to public folder
+echo "Creating .htaccess file in project directory..."
+cat > $WEB_ROOT/.htaccess << 'EOF'
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Redirect all requests to the public directory
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Disable directory listing
+Options -Indexes
+
+# Hide .env file
+<Files .env>
+    Order allow,deny
+    Deny from all
+</Files>
+EOF
+sudo chown $MY_USER:$GROUP $WEB_ROOT/.htaccess
+sudo chmod 644 $WEB_ROOT/.htaccess
+echo "✓ .htaccess file created in project directory"
+
 [ ! -e .env ] && cp .env.example .env
 
 # Add or update DATABASE_URL in .env file
