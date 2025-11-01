@@ -76,6 +76,34 @@ sudo -u $MY_USER php${PHP_VERSION}  artisan view:clear
 sudo -u $MY_USER php${PHP_VERSION}  artisan optimize:clear
 sudo -u $MY_USER php${PHP_VERSION}  artisan config:cache
 
+# Install latest Node.js (required for Yarn)
+echo "Installing/updating to latest Node.js LTS..."
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt install -y nodejs
+
+# Verify installation
+NODE_VERSION=$(node -v)
+echo "✓ Node.js installed: $NODE_VERSION"
+
+# Install Yarn if not already installed
+if ! command -v yarn >/dev/null 2>&1; then
+    echo "Installing Yarn..."
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    sudo apt update
+    sudo apt install -y yarn
+fi
+
+# Install Node dependencies with Yarn
+cd $WEB_ROOT
+if [[ -f "package.json" ]]; then
+    echo "Installing Node dependencies with Yarn..."
+    yarn install
+    echo "✓ Yarn dependencies installed"
+else
+    echo "⚠ No package.json found, skipping Yarn install"
+fi
+
 git config --global core.autocrlf input 
 git config core.fileMode false
 
